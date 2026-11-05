@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#172421">
+  <meta name="description" content="សេចក្តីអញ្ជើញមង្គលការរបស់ សួន សុវណ្ណដែន និង ចេក ស្រីពេជ្រ">
+  <title>សេចក្តីអញ្ជើញមង្គលការ | សុវណ្ណដែន & ស្រីពេជ្រ</title>
+
+  <!-- Khmer fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #172421;
+      --green-light: #24352e;
+      --gold: #e5c36b;
+      --gold-light: #fff0b5;
+      --cream: #fff9e9;
+      --text: #fff8e7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--green);
+      color: var(--text);
+      font-family: "Kantumruy Pro", "Battambang", sans-serif;
+      line-height: 1.9;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: 35px 18px 45px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at center, #2c3930 0%, #1c2925 55%, #111b19 100%);
+    }
+
+    /* Khmer-inspired ornamental frame */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(229, 195, 107, .65);
+      outline: 1px solid rgba(229, 195, 107, .28);
+      outline-offset: 5px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .ornament {
+      position: absolute;
+      width: 105px;
+      height: 105px;
+      color: var(--gold);
+      opacity: .8;
+      pointer-events: none;
+    }
+
+    .ornament svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .ornament.tl { top: 18px; left: 18px; }
+    .ornament.tr { top: 18px; right: 18px; transform: scaleX(-1); }
+    .ornament.bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
+    .ornament.br { bottom: 18px; right: 18px; transform: scale(-1); }
+
+    .language {
+      position: absolute;
+      top: 30px;
+      right: 32px;
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      padding: 5px 12px;
+      color: var(--gold-light);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .intro {
+      margin-top: 30px;
+      color: var(--gold-light);
+      font-size: clamp(17px, 4vw, 24px);
+    }
+
+    .hero-title {
+      margin: 6px 0 0;
+      font-family: "Battambang", serif;
+      color: var(--gold);
+      font-size: clamp(38px, 10vw, 68px);
+      line-height: 1.5;
+      font-weight: 700;
+      text-shadow: 0 3px 0 #876321, 0 0 20px #e5c36b25;
+    }
+
+    .subtitle {
+      margin: 5px 0 22px;
+      font-size: clamp(14px, 3.5vw, 19px);
+      color: var(--gold-light);
+    }
+
+    .couple-frame {
+      position: relative;
+      width: min(100%, 510px);
+      margin: 8px auto 0;
+    }
+
+    .couple-frame::before {
+      content: "❁";
+      position: absolute;
+      z-index: 2;
+      top: 25%;
+      left: 0;
+      color: var(--gold);
+      font-size: 28px;
+    }
+
+    .couple-frame::after {
+      content: "❁";
+      position: absolute;
+      z-index: 2;
+      top: 40%;
+      right: 0;
+      color: var(--gold);
+      font-size: 24px;
+    }
+
+    .couple-photo {
+      display: block;
+      width: 100%;
+      max-height: 55svh;
+      min-height: 300px;
+      object-fit: contain;
+      object-position: center bottom;
+      filter: drop-shadow(0 10px 22px #0008);
+    }
+
+    .names {
+      margin: 18px 0 8px;
+      color: var(--gold-light);
+      font-family: "Battambang", serif;
+      font-size: clamp(21px, 5.5vw, 34px);
+      line-height: 1.8;
+    }
+
+    .date-line {
+      color: #fff4d0;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .gold-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      max-width: 100%;
+      padding: 12px 27px;
+      border: 2px solid #fff0ad;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #fff0ad, #d9ad43 55%, #f9e69b);
+      color: #49331a;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      box-shadow: 0 0 0 4px #d4ad4b35, 0 8px 25px #0004;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .gold-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 5px #d4ad4b45, 0 10px 28px #0005;
+    }
+
+    .scroll-hint {
+      color: var(--gold);
+      font-size: 13px;
+      margin-top: 22px;
+      opacity: .85;
+    }
+
+    .section {
+      position: relative;
+      padding: 70px 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .section.cream {
+      color: #453522;
+      background: var(--cream);
+    }
+
+    .section.dark {
+      background: var(--green-light);
+    }
+
+    .section-title {
+      color: var(--gold);
+      font-family: "Battambang", serif;
+      font-size: clamp(25px, 6vw, 36px);
+      margin: 0 0 12px;
+    }
+
+    .cream .section-title {
+      color: #987026;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #d2ab51;
+      margin: 14px auto 25px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      width: 65px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .invitation-card {
+      width: min(100%, 650px);
+      margin: auto;
+      padding: 28px 22px;
+      border: 1px solid #d5b35c;
+      outline: 1px solid #d5b35c55;
+      outline-offset: 5px;
+      background: #fffdf5;
+      color: #493b2b;
+    }
+
+    .invitation-card p {
+      margin: 10px 0;
+    }
+
+    .gold-text {
+      color: #9a742b;
+      font-weight: 700;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      width: min(100%, 700px);
+      margin: 30px auto 0;
+    }
+
+    .event-box {
+      padding: 20px 12px;
+      border: 1px solid #d9bd70;
+      border-radius: 12px;
+      background: #ffffff08;
+    }
+
+    .event-icon {
+      display: block;
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    .event-box h3 {
+      color: var(--gold-light);
+      margin: 6px 0;
+      font-size: 17px;
+    }
+
+    .event-box p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 25px auto;
+    }
+
+    .count-box {
+      min-width: 72px;
+      padding: 12px 8px;
+      border: 1px solid #d7b85f;
+      border-radius: 10px;
+      background: #ffffff08;
+    }
+
+    .count-box strong {
+      display: block;
+      color: var(--gold);
+      font-size: 27px;
+      line-height: 1.4;
+    }
+
+    .count-box span {
+      font-size: 12px;
+    }
+
+    .location-card {
+      width: min(100%, 650px);
+      margin: 25px auto 0;
+      padding: 24px 18px;
+      border: 1px solid #d9bd70;
+      border-radius: 12px;
+    }
+
+    .rsvp-form {
+      display: grid;
+      gap: 13px;
+      width: min(100%, 480px);
+      margin: 25px auto 0;
+      text-align: left;
+    }
+
+    .rsvp-form label {
+      color: var(--gold-light);
+      font-size: 14px;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 12px;
+      border: 1px solid #d4b45f;
+      border-radius: 8px;
+      background: #ffffff0c;
+      color: white;
+      font: inherit;
+    }
+
+    .rsvp-form select option {
+      color: #222;
+    }
+
+    .rsvp-form input:focus,
+    .rsvp-form select:focus,
+    .rsvp-form textarea:focus {
+      outline: 2px solid #e5c36b88;
+    }
+
+    .footer {
+      padding: 38px 20px;
+      text-align: center;
+      color: var(--gold-light);
+      background: #101916;
+      font-size: 14px;
+    }
+
+    .footer-ornament {
+      color: var(--gold);
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width: 700px) {
+      .hero {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+
+      .couple-photo {
+        max-height: 650px;
+      }
+
+      .section {
+        padding: 85px 30px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .ornament {
+        width: 70px;
+        height: 70px;
+      }
+
+      .language {
+        top: 24px;
+        right: 25px;
+      }
+
+      .event-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-left: 23px;
+        padding-right: 23px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  
+/* Photo gallery */
+.gallery-section{padding:54px 20px;text-align:center;background:linear-gradient(145deg,#f8f0dc,#fffaf0);border:1px solid rgba(190,151,72,.55);border-radius:22px;margin:32px auto;max-width:980px;box-shadow:0 12px 35px rgba(48,35,15,.12)}
+.gallery-title{color:#936d2c;font-size:clamp(24px,4vw,34px);margin:0 0 10px}
+.gallery-note{color:#69583c;margin:0 auto 24px;max-width:600px;line-height:1.8}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.gallery-item img{display:block;width:100%;height:280px;object-fit:cover;transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.045)}
+.gallery-caption{padding:10px;color:#755a2c;font-size:14px}
+
+@media(max-width:520px){.gallery-section{padding:35px 12px;margin:22px 8px}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gallery-item img{height:190px}}
+
+</style>
+</head>
+
+<body>
+  <main>
+    <!-- FRONT COVER -->
+    <section class="hero" id="home">
+
+      <!-- Decorative Khmer-inspired corner ornaments -->
+      <div class="ornament tl" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57 Q51 47 69 53 Q47 65 24 68 Q14 77 10 95"/>
+          <path d="M5 45 Q10 20 36 12 M17 83 Q35 73 45 57 M31 91 Q53 72 56 61"/>
+          <path d="M5 75 Q25 75 35 60 Q48 43 67 39"/>
+          <circle cx="8" cy="8" r="3"/>
+        </svg>
+      </div>
+
+      <div class="ornament tr" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57 Q51 47 69 53 Q47 65 24 68 Q14 77 10 95"/>
+          <path d="M5 45 Q10 20 36 12 M17 83 Q35 73 45 57 M31 91 Q53 72 56 61"/>
+          <path d="M5 75 Q25 75 35 60 Q48 43 67 39"/>
+          <circle cx="8" cy="8" r="3"/>
+        </svg>
+      </div>
+
+      <div class="ornament bl" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57 Q51 47 69 53 Q47 65 24 68 Q14 77 10 95"/>
+          <path d="M5 45 Q10 20 36 12 M17 83 Q35 73 45 57 M31 91 Q53 72 56 61"/>
+          <path d="M5 75 Q25 75 35 60 Q48 43 67 39"/>
+        </svg>
+      </div>
+
+      <div class="ornament br" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57 Q51 47 69 53 Q47 65 24 68 Q14 77 10 95"/>
+          <path d="M5 45 Q10 20 36 12 M17 83 Q35 73 45 57 M31 91 Q53 72 56 61"/>
+          <path d="M5 75 Q25 75 35 60 Q48 43 67 39"/>
+        </svg>
+      </div>
+
+      <div class="language">KHMER WEDDING</div>
+
+      <div class="intro">សិរីសួស្តីអាពាហ៍ពិពាហ៍</div>
+
+      <h1 class="hero-title">សិរីមង្គល</h1>
+
+      <p class="subtitle">សូមគោរពអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស</p>
+
+      <div class="couple-frame">
+        <!-- Place your real couple photo at images/couple.png -->
+        <img
+          class="couple-photo"
+          src="images/couple.png"
+          alt="រូបថតកូនកំលោះ និងកូនក្រមុំ"
+          onerror="this.style.display='none'; document.getElementById('photoFallback').style.display='block';"
+        >
+
+        <div id="photoFallback" style="display:none; padding:60px 10px; color:#f4df9b;">
+          <div style="font-size:65px;">❦</div>
+          <p>សូមដាក់រូបថតគូស្នេហ៍នៅក្នុងថត images</p>
+          <p style="font-size:13px;">ដាក់ឈ្មោះរូបថតថា couple.png</p>
+        </div>
+      </div>
+
+      <h2 class="names">សួន សុវណ្ណដែន (ឡុង)<br>និង<br>ចេក ស្រីពេជ្រ</h2>
+
+      <div class="date-line">ថ្ងៃសៅរ៍ ទី១៩ ខែធ្នូ ឆ្នាំ២០២៦</div>
+
+      <a class="gold-button" href="#invitation">
+        <span aria-hidden="true">✉</span>
+        សូមអញ្ជើញចូលរួម
+      </a>
+
+      <div class="scroll-hint">⌄ សូមអូសចុះក្រោមដើម្បីមើលព័ត៌មាន ⌄</div>
+    </section>
+
+    <!-- INVITATION MESSAGE -->
+    <section class="section cream" id="invitation">
+      <h2 class="section-title">សេចក្តីអញ្ជើញ</h2>
+      <div class="divider">❦</div>
+
+      <div class="invitation-card">
+        <p>យើងខ្ញុំជាកូនប្រុស និងកូនស្រី</p>
+        <p class="gold-text">សួន សុវណ្ណដែន (ឡុង)</p>
+        <p>និង</p>
+        <p class="gold-text">ចេក ស្រីពេជ្រ</p>
+
+        <p>
+          មានកិត្តិយសសូមគោរពអញ្ជើញ ឯកឧត្តម លោកជំទាវ
+          លោក លោកស្រី អ្នកនាងកញ្ញា និងមិត្តភក្តិទាំងអស់
+          ចូលរួមជាភ្ញៀវកិត្តិយសក្នុងពិធីមង្គលការរបស់យើងខ្ញុំ។
+        </p>
+
+        <p>
+          វត្តមានរបស់លោកអ្នក គឺជាកិត្តិយស និងជាសេចក្តីសោមនស្សរីករាយ
+          ដ៏ធំធេងសម្រាប់ក្រុមគ្រួសារយើងខ្ញុំ។
+        </p>
+
+        <p class="gold-text">សូមគោរពអញ្ជើញដោយក្តីសោមនស្សរីករាយ!</p>
+      </div>
+    </section>
+
+    <!-- EVENT DETAILS -->
+    <section class="section dark" id="details">
+      <h2 class="section-title">ព័ត៌មានកម្មវិធី</h2>
+      <div class="divider">❦</div>
+
+      <p>សូមអញ្ជើញចូលរួមអបអរសាទរថ្ងៃដ៏មានអត្ថន័យរបស់យើងខ្ញុំ</p>
+
+      <div class="event-grid">
+        <div class="event-box">
+          <span class="event-icon">❋</span>
+          <h3>ថ្ងៃមង្គលការ</h3>
+          <p>ថ្ងៃសៅរ៍</p>
+          <p>ទី១៩ ខែធ្នូ ឆ្នាំ២០២៦</p>
+        </div>
+
+        <div class="event-box">
+          <span class="event-icon">◷</span>
+          <h3>ពេលវេលា</h3>
+          <p>ពេលល្ងាច</p>
+          <p>សូមបញ្ជាក់ម៉ោងពិតនៅទីនេះ</p>
+        </div>
+
+        <div class="event-box" style="grid-column:1 / -1;">
+          <span class="event-icon">⌖</span>
+          <h3>ទីតាំងកម្មវិធី</h3>
+          <p>គេហដ្ឋានខាងស្រី</p>
+          <p>សូមប្រើផែនទីខាងក្រោមដើម្បីស្វែងរកទីតាំង</p>
+        </div>
+      </div>
+
+      <div class="countdown" aria-label="រាប់ថយក្រោយដល់ថ្ងៃមង្គលការ">
+        <div class="count-box">
+          <strong id="days">--</strong>
+          <span>ថ្ងៃ</span>
+        </div>
+        <div class="count-box">
+          <strong id="hours">--</strong>
+          <span>ម៉ោង</span>
+        </div>
+        <div class="count-box">
+          <strong id="minutes">--</strong>
+          <span>នាទី</span>
+        </div>
+        <div class="count-box">
+          <strong id="seconds">--</strong>
+          <span>វិនាទី</span>
+        </div>
+      </div>
+      <p id="countdownMessage" aria-live="polite">រាប់ថយក្រោយដល់ថ្ងៃពិសេស</p>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="section cream" id="location">
+      <h2 class="section-title">ទីតាំងមង្គលការ</h2>
+      <div class="divider">❦</div>
+
+      <div class="location-card">
+        <p class="gold-text">គេហដ្ឋានខាងស្រី</p>
+        <p>សូមចុចប៊ូតុងខាងក្រោម ដើម្បីមើលផែនទី និងផ្លូវធ្វើដំណើរ។</p>
+
+        <!-- Replace the URL with your actual Google Maps link -->
+        <a
+          class="gold-button"
+          href="https://maps.google.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ⌖ បើក Google Maps
+        </a>
+        <p style="font-size:12px; margin-top:15px;">
+          សូមកែតំណភ្ជាប់នេះជាមួយទីតាំងពិតរបស់អ្នក។
+        </p>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section dark" id="rsvp">
+      <h2 class="section-title">បញ្ជាក់ការចូលរួម</h2>
+      <div class="divider">❦</div>
+
+      <p>សូមជួយបញ្ជាក់ការចូលរួមរបស់លោកអ្នក។</p>
+
+      <!-- This form opens the user's email app.
+           For automatic RSVP collection, connect a Google Form. -->
+      <form class="rsvp-form" id="rsvpForm">
+        <label>
+          ឈ្មោះអ្នកចូលរួម
+          <input type="text" id="guestName" placeholder="សូមបញ្ចូលឈ្មោះ" required>
+        </label>
+
+        <label>
+          ចំនួនអ្នកចូលរួម
+          <select id="guestCount" required>
+            <option value="1">១ នាក់</option>
+            <option value="2">២ នាក់</option>
+            <option value="3">៣ នាក់</option>
+            <option value="4">៤ នាក់</option>
+            <option value="5">៥ នាក់ ឬច្រើនជាងនេះ</option>
+          </select>
+        </label>
+
+        <label>
+          ការបញ្ជាក់
+          <select id="attendance" required>
+            <option value="ចូលរួម">ខ្ញុំនឹងចូលរួម</option>
+            <option value="មិនអាចចូលរួម">សូមអភ័យទោស មិនអាចចូលរួមបាន</option>
+          </select>
+        </label>
+
+        <button class="gold-button" type="submit">
+          ✉ បញ្ជាក់ការចូលរួម
+        </button>
+      </form>
+
+      <p style="font-size:12px; margin-top:18px;">
+        ចំណាំ៖ គំរូនេះបង្កើតសារតាម Email ប៉ុណ្ណោះ។
+        ប្រសិនបើចង់ប្រមូលចម្លើយដោយស្វ័យប្រវត្តិ សូមភ្ជាប់ Google Forms។
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-ornament">❦ ❋ ❦</div>
+    <div>សូមអរគុណចំពោះវត្តមានដ៏មានតម្លៃរបស់លោកអ្នក</div>
+    <div style="margin-top:10px;">
+      សួន សុវណ្ណដែន (ឡុង) ♥ ចេក ស្រីពេជ្រ
+    </div>
+  </footer>
+
+  <script>
+    // Countdown to 19 December 2026.
+    // Change the time below when the ceremony time is confirmed.
+    const weddingDate = new Date("2026-12-19T17:00:00+07:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const difference = weddingDate.getTime() - now.getTime();
+
+      if (difference <= 0) {
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+        document.getElementById("countdownMessage").textContent =
+          "សូមអបអរសាទរថ្ងៃដ៏ពិសេសរបស់យើងខ្ញុំ!";
+        return;
+      }
+
+      document.getElementById("days").textContent =
+        Math.floor(difference / (1000 * 60 * 60 * 24));
+
+      document.getElementById("hours").textContent =
+        Math.floor((difference / (1000 * 60 * 60)) % 24);
+
+      document.getElementById("minutes").textContent =
+        Math.floor((difference / (1000 * 60)) % 60);
+
+      document.getElementById("seconds").textContent =
+        Math.floor((difference / 1000) % 60);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Demo RSVP: creates a pre-filled email.
+    // For automatic collection, replace this with a Google Forms link.
+    document.getElementById("rsvpForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("guestName").value.trim();
+      const count = document.getElementById("guestCount").value;
+      const attendance = document.getElementById("attendance").value;
+
+      const subject = encodeURIComponent("ការបញ្ជាក់ការចូលរួមមង្គលការ");
+      const body = encodeURIComponent(
+        "ឈ្មោះ៖ " + name + "\n" +
+        "ចំនួនអ្នក៖ " + count + "\n" +
+        "ការចូលរួម៖ " + attendance + "\n" +
+        "មង្គលការ សួន សុវណ្ណដែន និង ចេក ស្រីពេជ្រ"
+      );
+
+      // Replace with your real email address.
+      window.location.href =
+        "mailto:YOUR-EMAIL@example.com?subject=" + subject + "&body=" + body;
+    });
+  </script>
+
+<section class="gallery-section" id="gallery">
+
+  <h2 class="gallery-title">Wedding Gallery</h2>
+
+  <div class="gallery-grid">
+
+    <figure class="gallery-item">
+      <img src="./images/gallery/couple.png" alt="Couple">
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="./images/gallery/photo-1.jpg" alt="Photo 1">
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="./images/gallery/photo-2.jpg" alt="Photo 2">
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="./images/gallery/photo-3.jpg" alt="Photo 3">
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="./images/gallery/photo-4.JPG" alt="Photo 4">
+    </figure>
+    
+  </div>
+</section>
+
+</body>
+</html>

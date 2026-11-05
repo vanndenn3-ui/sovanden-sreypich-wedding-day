@@ -1,0 +1,1 @@
+បើកថត wedding-gallery-project ក្នុង VS Code។ index.html ជាឯកសារមេ។ រូប Cover នៅ images/couple.png និងរូប Gallery នៅ images/gallery/photo-1.jpg, photo-2.jpg។ ដើម្បីបន្ថែមរូប សូមដាក់រូបថ្មីក្នុង images/gallery ហើយប្រាប់ខ្ញុំ ឬកែ HTML បន្ថែម figure។

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#172421">
+  <meta name="description" content="សេចក្តីអញ្ជើញមង្គលការរបស់ សួន សុវណ្ណដែន និង ចេក ស្រីពេជ្រ">
+  <title>សេចក្តីអញ្ជើញមង្គលការ | សុវណ្ណដែន & ស្រីពេជ្រ</title>
+
+  <!-- Khmer fonts & Decorative Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700;900&family=Kantumruy+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Moul&family=Moulpali&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-deep: #071f16;
+      --green-main: #10382b;
+      --green-light: #1b4d3e;
+      --gold-deep: #b8860b;
+      --gold-main: #d4af37;
+      --gold-bright: #fff0b5;
+      --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba 40%, #b38728 70%, #fbf5b7);
+      --text-gold: #f5d77f;
+      --cream: #fffdf7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--green-deep);
+      color: #ffffff;
+      font-family: "Kantumruy Pro", "Battambang", sans-serif;
+      line-height: 2;
+      font-size: 17px;
+    }
+
+    /* Khmer Decorative Fonts */
+    .font-kbach {
+      font-family: "Moul", "Moulpali", "Battambang", serif;
+      letter-spacing: 1px;
+    }
+
+    .font-title {
+      font-family: "Battambang", serif;
+      font-weight: 700;
+    }
+
+    /* Metallic Gold Text Effect */
+    .gold-shimmer {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ===== KHMER ENVELOPE OVERLAY ===== */
+    .envelope-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      overflow: hidden;
+      transition: opacity .8s ease, visibility .8s ease;
+    }
+
+    /* Blurred Photo Background using couple.png */
+    .envelope-screen::before {
+      content: "";
+      position: absolute;
+      inset: -20px;
+      background: url('images/couple.png') center/cover no-repeat;
+      filter: blur(14px) brightness(0.42);
+      transform: scale(1.08);
+      z-index: -2;
+    }
+
+    /* Dark Emerald Gradient Overlay */
+    .envelope-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(16, 36, 28, 0.65) 0%, rgba(5, 20, 15, 0.92) 100%);
+      z-index: -1;
+    }
+
+    .envelope-screen.closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Khmer Traditional Luxury Card Structure */
+    .envelope {
+      position: relative;
+      width: min(92vw, 440px);
+      padding: 42px 24px 36px;
+      text-align: center;
+      color: #fff6d6;
+      background: rgba(18, 42, 33, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid var(--gold-main);
+      border-radius: 16px;
+      box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.75),
+        inset 0 0 0 6px rgba(212, 175, 55, 0.2),
+        0 0 35px rgba(212, 175, 55, 0.3);
+      transform: translateY(0) scale(1);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease, filter 0.8s ease;
+    }
+
+    .envelope-border-inner {
+      position: absolute;
+      inset: 8px;
+      border: 1px double var(--gold-main);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    /* Corner Khmer Ornaments */
+    .env-ornament {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      color: var(--gold-main);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+    .env-ornament.tl { top: 12px; left: 12px; }
+    .env-ornament.tr { top: 12px; right: 12px; transform: scaleX(-1); }
+    .env-ornament.bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+    .env-ornament.br { bottom: 12px; right: 12px; transform: scale(-1); }
+
+    .envelope.opening {
+      transform: perspective(1000px) rotateX(20deg) translateY(-40px) scale(1.05);
+      opacity: 0;
+      filter: drop-shadow(0 0 35px #f4d47b);
+    }
+
+    .env-crown {
+      font-size: 26px;
+      color: var(--gold-main);
+      margin-bottom: 2px;
+      animation: envGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes envGlow {
+      from { filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.5)); }
+      to { filter: drop-shadow(0 0 10px #fff0ad); }
+    }
+
+    .envelope h2 {
+      font-size: clamp(20px, 5vw, 26px);
+      margin: 6px 0 10px;
+    }
+
+    .env-names {
+      font-size: clamp(18px, 4.5vw, 24px);
+      color: var(--gold-bright);
+      margin: 8px 0 16px;
+      line-height: 1.6;
+    }
+
+    .env-desc {
+      font-size: 14px;
+      color: #e0d5bd;
+      margin-bottom: 24px;
+    }
+
+    /* ===== HERO SECTION WITH ANGKOR WAT BACKGROUND ===== */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: 45px 18px 45px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: 
+        linear-gradient(180deg, rgba(7, 31, 22, 0.75) 0%, rgba(13, 46, 35, 0.8) 60%, rgba(5, 24, 17, 0.9) 100%),
+        url('images/angkor.jpg'),
+        url('https://images.unsplash.com/photo-1608447714925-599deabd5a46?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat !important;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 2px solid var(--gold-main);
+      outline: 1px solid rgba(212, 175, 55, 0.4);
+      outline-offset: 6px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .ornament {
+      position: absolute;
+      width: 105px;
+      height: 105px;
+      color: var(--gold-main);
+      opacity: .85;
+      pointer-events: none;
+    }
+
+    .ornament svg { width: 100%; height: 100%; }
+    .ornament.tl { top: 18px; left: 18px; }
+    .ornament.tr { top: 18px; right: 18px; transform: scaleX(-1); }
+    .ornament.bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
+    .ornament.br { bottom: 18px; right: 18px; transform: scale(-1); }
+
+    .language {
+      position: absolute;
+      top: 30px;
+      right: 32px;
+      border: 1px solid var(--gold-main);
+      border-radius: 30px;
+      padding: 5px 14px;
+      color: var(--gold-bright);
+      font-size: 12px;
+      letter-spacing: 1px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .intro {
+      margin-top: 30px;
+      color: var(--gold-bright);
+      font-size: clamp(16px, 3.8vw, 22px);
+    }
+
+    .hero-title {
+      margin: 8px 0 0;
+      font-size: clamp(34px, 8.5vw, 62px);
+      line-height: 1.5;
+    }
+
+    .subtitle {
+      margin: 8px 0 22px;
+      font-size: clamp(15px, 3.5vw, 19px);
+      color: var(--gold-bright);
+    }
+
+    .couple-frame {
+      position: relative;
+      width: min(85%, 420px);
+      aspect-ratio: 2 / 3;
+      margin: 25px auto;
+      overflow: hidden;
+      border-radius: 180px 180px 25px 25px;
+      border: 4px solid var(--gold-main);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+    }
+
+    .couple-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    .names {
+      margin: 18px 0 8px;
+      color: var(--gold-bright);
+      font-size: clamp(22px, 5.5vw, 34px);
+      line-height: 1.8;
+    }
+
+    .date-line {
+      color: var(--gold-bright);
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .gold-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      min-width: 230px;
+      max-width: 100%;
+      padding: 13px 28px;
+      border: 1px solid #fff0ad;
+      border-radius: 50px;
+      background: var(--gold-gradient);
+      color: #3b2800;
+      font-family: "Battambang", serif;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3), 0 8px 25px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .gold-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.45), 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .scroll-hint {
+      color: var(--gold-main);
+      font-size: 13px;
+      margin-top: 22px;
+      opacity: .9;
+    }
+
+    /* ===== SECTIONS STYLING WITH ANGKOR WAT BACKGROUND ===== */
+    .section {
+      position: relative;
+      padding: 70px 20px;
+      text-align: center;
+      overflow: hidden;
+      margin: clamp(18px, 2.8vw, 35px) auto;
+      width: min(100% - 24px, 1180px);
+      border: 5px double var(--gold-main) !important;
+      outline: 1px solid rgba(255, 226, 151, 0.58);
+      outline-offset: -11px;
+      box-shadow: 0 14px 38px rgba(0,0,0,.35), inset 0 0 0 3px rgba(255, 230, 164, 0.14);
+      border-radius: 4px;
+    }
+
+    /* Background អង្គរវត្ត បែប Cream/Gold សម្រាប់ Cream Sections */
+    .section.cream {
+      color: #4a3319;
+      background:
+        linear-gradient(135deg, rgba(255, 253, 250, 0.82) 0%, rgba(247, 232, 203, 0.88) 100%),
+        url('images/angkor.jpg'),
+        url('https://images.unsplash.com/photo-1608447714925-599deabd5a46?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat !important;
+      border-color: #bd9147 !important;
+    }
+
+    /* Background អង្គរវត្ត បែប Emerald Green សម្រាប់ Dark Sections */
+    .section.dark {
+      color: var(--gold-bright);
+      background:
+        radial-gradient(circle at center, rgba(19, 69, 53, 0.78) 0%, rgba(6, 33, 23, 0.88) 100%),
+        url('images/angkor.jpg'),
+        url('https://images.unsplash.com/photo-1608447714925-599deabd5a46?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat !important;
+      border-color: var(--gold-main) !important;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 5.5vw, 36px);
+      margin: 0 0 8px;
+    }
+
+    .cream .section-title {
+      color: #724716;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--gold-main);
+      margin: 10px auto 25px;
+      font-size: 20px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      width: 65px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .invitation-card {
+      width: min(100%, 680px);
+      margin: auto;
+      padding: 32px 24px;
+      border: 2px solid var(--gold-main);
+      outline: 1px solid rgba(212, 175, 55, 0.3);
+      outline-offset: 6px;
+      background: rgba(255, 255, 255, 0.88);
+      color: #3d2b15;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .gold-text {
+      color: #8c5b18;
+      font-weight: 700;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      width: min(100%, 720px);
+      margin: 30px auto 0;
+    }
+
+    .event-box {
+      padding: 22px 14px;
+      border: 1px solid var(--gold-main);
+      border-radius: 12px;
+      background: rgba(10, 38, 28, 0.65);
+      backdrop-filter: blur(6px);
+    }
+
+    .event-icon {
+      display: block;
+      font-size: 30px;
+      color: var(--gold-main);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px auto;
+    }
+
+    .count-box {
+      min-width: 78px;
+      padding: 14px 10px;
+      border: 1px solid var(--gold-main);
+      border-radius: 10px;
+      background: rgba(10, 38, 28, 0.7);
+    }
+
+    .count-box strong {
+      display: block;
+      color: var(--gold-bright);
+      font-size: 28px;
+      line-height: 1.3;
+      font-family: "Battambang", serif;
+    }
+
+    .gallery-grid {
+      width: min(100%, 920px); 
+      margin: 28px auto 0;
+      display: grid; 
+      grid-template-columns: repeat(3, minmax(0, 1fr)); 
+      gap: 16px;
+    }
+
+    .gallery-item {
+      margin: 0; 
+      padding: 8px; 
+      border: 2px double var(--gold-main);
+      border-radius: 12px; 
+      background: rgba(9, 43, 30, 0.85); 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .gallery-item img {
+      display: block; 
+      width: 100%; 
+      aspect-ratio: 3 / 4;
+      object-fit: cover; 
+      border-radius: 8px;
+    }
+
+    .gallery-item figcaption { 
+      padding: 8px 3px 3px; 
+      font-size: 14px; 
+      color: var(--gold-bright); 
+    }
+
+    .program-day {
+      text-align: left;
+      background: rgba(255, 253, 246, 0.94) !important;
+      color: #2b1e10 !important;
+      border: 3px double #a8792a !important;
+      padding: clamp(20px, 4.5vw, 32px);
+      margin: 22px auto;
+      width: min(100%, 780px);
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .program-day-title {
+      text-align: center;
+      color: #613e0e !important;
+      font-size: clamp(20px, 4.8vw, 28px) !important;
+      margin: 0;
+    }
+
+    .program-item {
+      display: grid;
+      grid-template-columns: minmax(130px, 165px) 1fr;
+      gap: 16px;
+      padding: 15px 0;
+      border-bottom: 1px solid #d9c398;
+    }
+
+    .music-panel {
+      width: min(100%, 540px); 
+      margin: 22px auto; 
+      padding: 24px;
+      border: 1px solid var(--gold-main); 
+      border-radius: 14px; 
+      background: rgba(10, 38, 28, 0.7);
+    }
+
+    .music-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 18px 0; }
+    .music-choice { 
+      border: 1px solid var(--gold-main); 
+      border-radius: 30px; 
+      padding: 10px 18px; 
+      background: #0f3629; 
+      color: var(--gold-bright); 
+      font-family: inherit;
+      cursor: pointer; 
+    }
+    .music-choice.active { 
+      background: var(--gold-gradient); 
+      color: #3b2800; 
+      font-weight: 700;
+    }
+
+    .qr-card {
+      max-width: 380px; margin: 20px auto; padding: 22px;
+      background: #ffffff; border: 2px solid var(--gold-main); border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .qr-card img { width: 100%; border-radius: 10px; }
+
+    .feature-card {
+      width: min(100%, 780px); margin: 24px auto; padding: 28px 24px;
+      border: 1px solid #c7a15f; border-radius: 14px;
+      background: rgba(255, 253, 245, 0.92); color: #3d2b15;
+    }
+
+    .rsvp-form {
+      display: grid; gap: 15px; width: min(100%, 480px); margin: 25px auto 0; text-align: left;
+    }
+    .rsvp-form input, .rsvp-form select {
+      width: 100%; margin-top: 6px; padding: 13px; border: 1px solid var(--gold-main);
+      border-radius: 8px; background: rgba(10, 38, 28, 0.75); color: white; font: inherit;
+    }
+
+    .footer {
+      padding: 40px 20px; text-align: center; color: var(--gold-bright);
+      background: #051811; border-top: 5px double var(--gold-main);
+    }
+
+    /* ===== ANIMATED ELEMENTS ===== */
+    .animated-butterfly {
+      position: fixed; z-index: 10; pointer-events: none;
+      font-size: clamp(20px, 3.5vw, 32px); color: #f7d57f;
+      filter: drop-shadow(0 0 8px rgba(245, 213, 127, 0.6));
+      animation: flyAround var(--duration, 14s) ease-in-out infinite alternate;
+    }
+
+    @keyframes flyAround {
+      0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(0.8); opacity: 0.2; }
+      50% { transform: translate3d(var(--x2, -100px), var(--y2, -300px), 0) rotate(-15deg) scale(0.9); opacity: 0.8; }
+      100% { transform: translate3d(var(--x4, -80px), var(--y4, -650px), 0) rotate(-8deg) scale(1); opacity: 0.3; }
+    }
+
+    .rumduol-flower {
+      position: fixed; top: -40px; z-index: 9; pointer-events: none; color: #fce290;
+      animation: rumduolFall var(--fall-time, 10s) linear forwards;
+    }
+
+    @keyframes rumduolFall {
+      0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(0.7); opacity: 0; }
+      10% { opacity: 0.85; }
+      100% { transform: translate3d(var(--sway-x, 80px), 105vh, 0) rotate(420deg) scale(1.2); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .section { padding: 50px 15px; }
+      .program-item { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ENVELOPE SCREEN (អេក្រង់សំបុត្រអញ្ជើញឌីជីថល) -->
+  <div class="envelope-screen" id="envelopeScreen">
+    <div class="envelope" id="envelope">
+      <div class="envelope-border-inner"></div>
+
+      <!-- Corner Khmer Ornaments -->
+      <svg class="env-ornament tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57"/>
+      </svg>
+      <svg class="env-ornament tr" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57"/>
+      </svg>
+      <svg class="env-ornament bl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57"/>
+      </svg>
+      <svg class="env-ornament br" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57"/>
+      </svg>
+
+      <div class="env-crown">❦ ❋ ❦</div>
+      <h2 class="font-kbach gold-shimmer">សេចក្តីអញ្ជើញមង្គលការ</h2>
+      <div style="color:var(--gold-bright); font-size: 15px; margin-bottom: 6px;">— អាពាហ៍ពិពាហ៍ —</div>
+      <div class="env-names font-title">
+        សួន សុវណ្ណដែន (ឡុង)<br>♥<br>ចេក ស្រីពេជ្រ
+      </div>
+      <p class="env-desc">សូមចុចប៊ូតុងខាងក្រោមដើម្បីបើកសំបុត្រ និងស្ដាប់តន្ត្រី</p>
+      
+      <button class="gold-button" id="openInvitation" type="button">
+        💌 បើកសំបុត្រអញ្ជើញ
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- FRONT COVER -->
+    <section class="hero" id="home">
+      <div class="ornament tl" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57 Q51 47 69 53 Q47 65 24 68 Q14 77 10 95"/>
+        </svg>
+      </div>
+      <div class="ornament tr" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M5 65 Q5 10 65 5 Q35 25 24 46 Q43 27 62 28 Q46 48 29 57 Q51 47 69 53 Q47 65 24 68 Q14 77 10 95"/>
+        </svg>
+      </div>
+
+      <div class="language">KHMER WEDDING</div>
+      <div class="intro font-title">សិរីសួស្តីអាពាហ៍ពិពាហ៍</div>
+      <h1 class="hero-title font-kbach gold-shimmer">សិរីមង្គល</h1>
+      <p class="subtitle">សូមគោរពអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស</p>
+
+      <div class="couple-frame">
+        <img class="couple-photo" src="images/couple.png" alt="រូបថតកូនកំលោះ និងកូនក្រមុំ" onerror="this.style.display='none'; document.getElementById('photoFallback').style.display='block';">
+        <div id="photoFallback" style="display:none; padding:60px 10px; color:#f4df9b;">
+          <div style="font-size:65px;">❦</div>
+          <p>សូមដាក់រូបថតគូស្នេហ៍នៅក្នុងថត images</p>
+          <p style="font-size:13px;">ដាក់ឈ្មោះរូបថតថា couple.png</p>
+        </div>
+      </div>
+
+      <h2 class="names font-title">សួន សុវណ្ណដែន (ឡុង)<br>និង<br>ចេក ស្រីពេជ្រ</h2>
+      <div class="date-line">ថ្ងៃសៅរ៍ ទី១៩ ខែធ្នូ ឆ្នាំ២០២៦</div>
+
+      <a class="gold-button" href="#invitation">
+        <span aria-hidden="true">✉</span> សូមអញ្ជើញចូលរួម
+      </a>
+
+      <div class="scroll-hint">⌄ សូមអូសចុះក្រោមដើម្បីមើលព័ត៌មាន ⌄</div>
+    </section>
+
+    <!-- INVITATION MESSAGE -->
+    <section class="section cream" id="invitation">
+      <h2 class="section-title font-kbach">សេចក្តីអញ្ជើញ</h2>
+      <div class="divider">❦</div>
+      <div class="invitation-card">
+        <p>យើងខ្ញុំជាកូនប្រុស និងកូនស្រី</p>
+        <p class="gold-text font-title" style="font-size: 20px;">សួន សុវណ្ណដែន (ឡុង)</p>
+        <p>និង</p>
+        <p class="gold-text font-title" style="font-size: 20px;">ចេក ស្រីពេជ្រ</p>
+        <p style="margin-top: 15px;">
+          មានកិត្តិយសសូមគោរពអញ្ជើញ ឯកឧត្តម លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា និងមិត្តភក្តិទាំងអស់ ចូលរួមជាភ្ញៀវកិត្តិយសក្នុងពិធីមង្គលការរបស់យើងខ្ញុំ ដែលប្រព្រឹត្តទៅនៅថ្ងៃសៅរ៍ ១០កើត ខែមិគសិរ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៧០ ត្រូវនឹងថ្ងៃទី១៩ ខែធ្នូ ឆ្នាំ២០២៦នៅគេហដ្ឋានខាងស្រី ភូមិសំបួរមាស"ក",ឃុំពាមជីកង,ស្រុកកងមាស,ខេត្តកំពង់ចាម។
+        </p>
+        <p>វត្តមានរបស់លោកអ្នក គឺជាកិត្តិយស និងជាសេចក្តីសោមនស្សរីករាយ ដ៏ធំធេងសម្រាប់ក្រុមគ្រួសារយើងខ្ញុំ។</p>
+        <p class="gold-text font-title">សូមគោរពអញ្ជើញដោយក្តីសោមនស្សរីករាយ!</p>
+      </div>
+    </section>
+
+    <!-- EVENT DETAILS -->
+    <section class="section dark" id="details">
+      <h2 class="section-title font-kbach gold-shimmer">ព័ត៌មានកម្មវិធី</h2>
+      <div class="divider">❦</div>
+      <p>សូមអញ្ជើញចូលរួមអបអរសាទរថ្ងៃដ៏មានអត្ថន័យរបស់យើងខ្ញុំ</p>
+
+      <div class="event-grid">
+        <div class="event-box">
+          <span class="event-icon">❋</span>
+          <h3 class="font-title">ថ្ងៃមង្គលការ</h3>
+          <p>ថ្ងៃសៅរ៍ ១០កើត ខែមិគសិរ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៧០ ត្រូវនឹងថ្ងៃ</p>
+          <p>ទី១៩ ខែធ្នូ ឆ្នាំ២០២៦</p>
+        </div>
+
+        <div class="event-box">
+          <span class="event-icon">◷</span>
+          <h3 class="font-title">ពេលវេលា</h3>
+          <p>ពេលល្ងាច</p>
+          <p>ម៉ោង៥ ចាប់ផ្តើមរៀបចំពិសាភោជនីអាហារជាមួយនឹងការប្រគុំតន្ត្រីដ៏ពិរោះដោយមានការចូលរួមពីសិល្បះករដ៏មានឈ្មោះល្បីល្បាញប្រចាំប្រទេសកម្ពុជា យើងខ្ញុំក៏មានDJចាក់ពេលយប់ជ្រៅ</p>
+        </div>
+
+        <div class="event-box" style="grid-column:1 / -1;">
+          <span class="event-icon">⌖</span>
+          <h3 class="font-title">ទីតាំងកម្មវិធី</h3>
+          <p>ភូមិសំបួរមាស"ក",ឃុំពាមជីកង,ស្រុកកងមាស,ខេត្តកំពង់ចាម</p>
+          <p>សូមប្រើផែនទីខាងក្រោមដើម្បីស្វែងរកទីតាំង</p>
+        </div>
+      </div>
+
+      <div class="countdown" aria-label="រាប់ថយក្រោយដល់ថ្ងៃមង្គលការ">
+        <div class="count-box">
+          <strong id="days">--</strong>
+          <span>ថ្ងៃ</span>
+        </div>
+        <div class="count-box">
+          <strong id="hours">--</strong>
+          <span>ម៉ោង</span>
+        </div>
+        <div class="count-box">
+          <strong id="minutes">--</strong>
+          <span>នាទី</span>
+        </div>
+        <div class="count-box">
+          <strong id="seconds">--</strong>
+          <span>វិនាទី</span>
+        </div>
+      </div>
+      <p id="countdownMessage" aria-live="polite">រាប់ថយក្រោយដល់ថ្ងៃពិសេស</p>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="section cream" id="location">
+      <h2 class="section-title font-kbach">ទីតាំងមង្គលការ</h2>
+      <div class="divider">❦</div>
+
+      <div class="location-card">
+        <p class="gold-text font-title" style="font-size: 19px;">គេហដ្ឋានខាងស្រី</p>
+        <p>ភូមិសំបួរមាស"ក",ឃុំពាមជីកង,ស្រុកកងមាស,ខេត្តកំពង់ចាម</p>
+        <p>សូមចុចប៊ូតុងខាងក្រោម ដើម្បីមើលផែនទី និងផ្លូវធ្វើដំណើរ។</p>
+
+        <a class="gold-button" href="https://maps.app.goo.gl/yPHdL2BrQi2nGBx58" target="_blank" rel="noopener noreferrer">
+          ⌖ បើក Google Maps
+        </a>
+        <p style="font-size:12px; margin-top:15px;">
+          សូមកែតំណភ្ជាប់នេះជាមួយទីតាំងពិតរបស់អ្នក។
+        </p>
+      </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="section dark" id="gallery">
+      <h2 class="section-title font-kbach gold-shimmer">វិចិត្រសាលរូបថត</h2>
+      <div class="divider">❦</div>
+      <p>អនុស្សាវរីយ៍ដ៏មានតម្លៃរបស់យើងខ្ញុំ</p>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-1.jpg" alt="រូបថតទី១" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី១</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-2.jpg" alt="រូបថតទី២" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី២</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-3.jpg" alt="រូបថតទី៣" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៣</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-4.jpg" alt="រូបថតទី៤" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៤</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-5.jpg" alt="រូបថតទី៥" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៥</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-6.jpg" alt="រូបថតទី៦" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៦</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-7.jpg" alt="រូបថតទី៧" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៧</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-8.jpg" alt="រូបថតទី៨" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៨</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="images/gallery/photo-9.jpg" alt="រូបថតទី៩" loading="lazy">
+          <figcaption>អនុស្សាវរីយ៍ទី៩</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- WEDDING PROGRAM: TWO DAYS -->
+    <section class="section dark" id="program">
+      <h2 class="section-title font-kbach gold-shimmer">កម្មវិធីមង្គលការ</h2>
+      <div class="divider">❦</div>
+      <p>សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយសចូលរួមតាមកម្មវិធីដូចខាងក្រោម</p>
+
+      <div class="feature-card program-day">
+        <h3 class="program-day-title font-title">ថ្ងៃសុក្រ ទី១៨ ខែធ្នូ ឆ្នាំ២០២៦</h3>
+        <p class="program-day-subtitle">ពិធីថ្ងៃដំបូង</p>
+        <div class="program-timeline">
+          <div class="program-item"><time>០៣:០០ រសៀល</time><span>ពិធីសែនក្រុងពាលី</span></div>
+          <div class="program-item"><time>០៤:៣០ រសៀល</time><span>ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត</span></div>
+          <div class="program-item"><time>០៥:០០ ល្ងាច</time><span>អញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច</span></div>
+          <div class="program-item"><time>០៦:០០ ល្ងាច</time><span>ពិធីកាត់ខាន់ស្លា</span></div>
+        </div>
+      </div>
+
+      <div class="feature-card program-day">
+        <h3 class="program-day-title font-title">ថ្ងៃសៅរ៍ ទី១៩ ខែធ្នូ ឆ្នាំ២០២៦</h3>
+        <p class="program-day-subtitle">ពិធីថ្ងៃមង្គលការ</p>
+        <div class="program-timeline">
+          <div class="program-item"><time>០៧:០០ ព្រឹក</time><span>ពិធីហែជំនូន (កំណត់) ចូលរោងជ័យ</span></div>
+          <div class="program-item"><time>០៧:៣០ ព្រឹក</time><span>អញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឹក</span></div>
+          <div class="program-item"><time>០៨:០០ ព្រឹក</time><span>ពិធីចាស់ទុំនិយាយជើងការ ស្ដីដណ្តឹងតាមប្រពៃណី</span></div>
+          <div class="program-item"><time>០៨:១៥ ព្រឹក</time><span>ពិធីបំពាក់ចិញ្ចៀនកូនប្រុស កូនស្រី</span></div>
+          <div class="program-item"><time>០៩:០០ ព្រឹក</time><span>ពិធីកាត់សក់បង្កក់សិរីកូនប្រុស កូនស្រី</span></div>
+          <div class="program-item"><time>១១:០០ ព្រឹក</time><span>ពិធីបើកវាំងននយកអនមកផ្ទឹម សែនចងដៃ បាចផ្កាស្លា ព្រះថោងតោងស្បៃនាងនាគ និងអញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់</span></div>
+          <div class="program-item"><time>០៥:០០ ល្ងាច</time><span>ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHMER WEDDING MUSIC -->
+    <section class="section dark" id="music">
+      <h2 class="section-title font-kbach gold-shimmer">តន្ត្រីអមពិធី</h2>
+      <div class="divider">❦</div>
+      <div class="music-panel">
+        <p>សូមអញ្ជើញជ្រើសរើសតន្ត្រីអមពិធីមង្គលការ</p>
+        <div class="music-choices">
+          <button class="music-choice active" type="button" data-track="wedding">🎶 បទចម្រៀងមង្គលការ</button>
+          <button class="music-choice" type="button" data-track="piano">🎹 ព្យាណូស្រទន់</button>
+        </div>
+        <audio id="weddingMusic" controls loop preload="auto">
+          <source id="musicSource" src="images/wedding-song.mp3" type="audio/mpeg">
+          កម្មវិធីរុករករបស់អ្នកមិនគាំទ្រការចាក់សំឡេងទេ។
+        </audio>
+        <p class="music-note">សូមដាក់ឯកសារតន្ត្រីក្នុងថត images៖ wedding-song.mp3 និង piano-wedding-music.mp3។</p>
+      </div>
+    </section>
+
+    <!-- WEDDING GIFT / QR CODE SECTION -->
+    <section class="section cream" id="gift">
+      <h2 class="section-title font-kbach">ចំណងដៃមង្គលការ</h2>
+      <div class="divider">❦</div>
+      <p style="color: #65462b; margin-bottom: 15px;">
+        សម្រាប់លោកអ្នកដែលមិនបានចូលរួម ឬប្រាថ្នាចងដៃតាមរយៈគណនីធនាគារ
+      </p>
+
+      <div class="qr-card">
+        <img src="images/aba-qr.jpg" alt="ABA QR Code SOVANDENT SOUN" onerror="this.src='https://via.placeholder.com/300x400?text=Please+add+images/aba-qr.jpg';">
+        
+        <div class="acc-details font-title" style="color: #3d2b15; text-align: left; margin-top: 12px;">
+          <p><strong>ឈ្មោះគណនី៖</strong> SOVANDENT SOUN</p>
+          <p><strong>គណនី KHR៖</strong> 006 768 140</p>
+          <p><strong>គណនី USD៖</strong> 006 768 136</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAMILY THANK YOU AND APOLOGY -->
+    <section class="section cream" id="family-message">
+      <h2 class="section-title font-kbach">សេចក្តីថ្លែងអំណរគុណ</h2>
+      <div class="divider">❦</div>
+      <div class="feature-card thanks-card">
+        <p>យើងខ្ញុំជាមាតាបិតា កូនប្រុស - កូនស្រី សូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅ ចំពោះការអញ្ជើញចូលរួម ជាភ្ញៀវកិត្តិយសក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស - កូនស្រី របស់យើងខ្ញុំ។ សូមគោរពជូនពរដល់ឯកឧត្តម លោកជំទាវ លោកអ្នកឧកញ៉ា អ្នកឧកញ៉ា លោក លោកស្រី អ្នកនាង កញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់ សូមប្រកបតែភាពសុខដុមចម្រើននិងសុភមង្គល ក្នុងក្រុមគ្រួសារជានិច្ចនិរន្តរ៍។</p>
+      </div>
+      <h2 class="section-title font-kbach" style="margin-top:42px;">លិខិតសូមអភ័យទោស</h2>
+      <div class="divider">❦</div>
+      <div class="feature-card thanks-card">
+        <p>យើងខ្ញុំជាមាតាបិតា កូនប្រុស - កូនស្រី សូមអភ័យទោសក្នុងករណីពុំបានជូនសំបុត្រអញ្ជើញដោយផ្ទាល់ៗ សូមឯកឧត្តម លោកជំទាវ លោកអ្នកឧកញ៉ា អ្នកឧកញ៉ា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស - កូនស្រី របស់យើងខ្ញុំ ដោយមេត្រីភាព។</p>
+      </div>
+    </section>
+
+    <!-- EVENT ORGANIZER CONTACT -->
+    <section class="section cream" id="contact">
+      <h2 class="section-title font-kbach">លេខទំនាក់ទំនងម្ចាស់កម្មវិធី</h2>
+      <div class="ornament">❦</div>
+      <p class="section-intro">ប្រសិនបើលោកអ្នកត្រូវការព័ត៌មានបន្ថែម សូមទាក់ទងមកកាន់ម្ចាស់កម្មវិធីតាមលេខខាងក្រោម៖</p>
+      <div style="display:flex; flex-direction:column; gap:14px; max-width:420px; margin:24px auto;">
+        <a href="tel:0966377460" style="display:block; padding:15px 18px; border:1px solid #b8944d; border-radius:12px; color:#174b3b; text-decoration:none; font-size:22px; font-weight:700; text-align:center;">☎ ០៩៦៦៣៧៧៤៦០</a>
+        <a href="tel:0968528882" style="display:block; padding:15px 18px; border:1px solid #b8944d; border-radius:12px; color:#174b3b; text-decoration:none; font-size:22px; font-weight:700; text-align:center;">☎ ០៩៦៨៥២៨៨៨២</a>
+      </div>
+      <p class="music-note">ចុចលើលេខទូរស័ព្ទ ដើម្បីធ្វើការហៅចេញ។</p>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section dark" id="rsvp">
+      <h2 class="section-title font-kbach gold-shimmer">បញ្ជាក់ការចូលរួម</h2>
+      <div class="divider">❦</div>
+      <p>សូមជួយបញ្ជាក់ការចូលរួមរបស់លោកអ្នក។</p>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <label>
+          ឈ្មោះអ្នកចូលរួម
+          <input type="text" id="guestName" placeholder="សូមបញ្ចូលឈ្មោះ" required>
+        </label>
+
+        <label>
+          ចំនួនអ្នកចូលរួម
+          <select id="guestCount" required>
+            <option value="1">១ នាក់</option>
+            <option value="2">២ នាក់</option>
+            <option value="3">៣ នាក់</option>
+            <option value="4">៤ នាក់</option>
+            <option value="5">៥ នាក់ ឬច្រើនជាងនេះ</option>
+          </select>
+        </label>
+
+        <label>
+          ការបញ្ជាក់
+          <select id="attendance" required>
+            <option value="ចូលរួម">ខ្ញុំនឹងចូលរួម</option>
+            <option value="មិនអាចចូលរួម">សូមអភ័យទោស មិនអាចចូលរួមបាន</option>
+          </select>
+        </label>
+
+        <button class="gold-button" type="submit">
+          ✈ បញ្ជាក់ការចូលរួមតាម Telegram
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer font-title">
+    <div style="font-size:26px; color:var(--gold-main); margin-bottom: 8px;">❦ ❋ ❦</div>
+    <div>សូមអរគុណចំពោះវត្តមានដ៏មានតម្លៃរបស់លោកអ្នក</div>
+    <div style="margin-top:12px;display:flex;justify-content:center;flex-wrap:wrap;gap:14px;font-size:13px;"><a href="#gallery">រូបថត</a><a href="#program">កម្មវិធី</a><a href="#music">តន្ត្រី</a><a href="#gift">ចំណងដៃ</a><a href="#family-message">អំណរគុណ</a><a href="#contact">ទំនាក់ទំនង</a> · <a href="#rsvp">RSVP</a></div>
+    <div style="margin-top:10px;">
+      សួន សុវណ្ណដែន (ឡុង) ♥ ចេក ស្រីពេជ្រ
+    </div>
+  </footer>
+
+  <script>
+    const weddingMusic = document.getElementById('weddingMusic');
+    const musicSource = document.getElementById('musicSource');
+    const envelopeScreen = document.getElementById("envelopeScreen");
+    const envelope = document.getElementById("envelope");
+    const openBtn = document.getElementById("openInvitation");
+
+    // Click Open Envelope Button -> Animation + Play Audio
+    if (openBtn) {
+      openBtn.addEventListener("click", function () {
+        envelope.classList.add("opening");
+        
+        weddingMusic.play().catch(function(err) {
+          console.log("Audio play blocked: ", err);
+        });
+
+        window.setTimeout(function () {
+          envelopeScreen.classList.add("closed");
+          document.getElementById("home").scrollIntoView({ behavior: "smooth" });
+        }, 600);
+      });
+    }
+
+    // Floating Butterflies
+    (function createButterflies() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const butterflyIcons = ['🦋', 'ʚɞ'];
+      const count = 5;
+
+      for (let i = 0; i < count; i++) {
+        const b = document.createElement('div');
+        b.className = 'animated-butterfly';
+        b.textContent = butterflyIcons[i % butterflyIcons.length];
+        
+        b.style.left = (10 + (i * 20)) + 'vw';
+        b.style.top = (20 + (i * 15)) + 'vh';
+        b.style.setProperty('--duration', (12 + (i * 3)) + 's');
+        b.style.setProperty('--x1', ((i % 2 === 0 ? 1 : -1) * 140) + 'px');
+        b.style.setProperty('--y1', (-120 - (i * 30)) + 'px');
+        b.style.setProperty('--x2', ((i % 2 === 0 ? -1 : 1) * 120) + 'px');
+        b.style.setProperty('--y2', (-280 - (i * 40)) + 'px');
+        b.style.setProperty('--x3', ((i % 2 === 0 ? 1 : -1) * 160) + 'px');
+        b.style.setProperty('--y3', (-450 - (i * 30)) + 'px');
+        b.style.setProperty('--x4', ((i % 2 === 0 ? -1 : 1) * 90) + 'px');
+        b.style.setProperty('--y4', (-600 - (i * 50)) + 'px');
+        
+        document.body.appendChild(b);
+      }
+    })();
+
+    // Falling Rumduol Flowers
+    (function createRumduolFlowers() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const rumduolSymbols = ['🌸', '💮', '✿'];
+
+      function addRumduol() {
+        const flower = document.createElement('span');
+        flower.className = 'rumduol-flower';
+        flower.textContent = rumduolSymbols[Math.floor(Math.random() * rumduolSymbols.length)];
+        flower.style.left = (Math.random() * 95) + 'vw';
+        flower.style.fontSize = (16 + Math.random() * 14) + 'px';
+        flower.style.setProperty('--fall-time', (8 + Math.random() * 7) + 's');
+        flower.style.setProperty('--sway-x', ((Math.random() * 160) - 80) + 'px');
+        
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 16000);
+      }
+
+      for (let i = 0; i < 6; i++) {
+        setTimeout(addRumduol, i * 600);
+      }
+      setInterval(addRumduol, 1400);
+    })();
+
+    // Countdown Timer
+    const weddingDate = new Date("2026-12-19T17:00:00+07:00");
+    function updateCountdown() {
+      const now = new Date();
+      const difference = weddingDate.getTime() - now.getTime();
+
+      if (difference <= 0) {
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+        document.getElementById("countdownMessage").textContent = "សូមអបអរសាទរថ្ងៃដ៏ពិសេសរបស់យើងខ្ញុំ!";
+        return;
+      }
+
+      document.getElementById("days").textContent = Math.floor(difference / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").textContent = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").textContent = Math.floor((difference / (1000 * 60)) % 60);
+      document.getElementById("seconds").textContent = Math.floor((difference / 1000) % 60);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Music Switcher
+    document.querySelectorAll('.music-choice').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const trackFile = button.dataset.track === 'piano'
+          ? 'images/piano-wedding-music.mp3'
+          : 'images/wedding-song.mp3';
+        document.querySelectorAll('.music-choice').forEach(function (b) { b.classList.remove('active'); });
+        button.classList.add('active');
+        weddingMusic.pause();
+        musicSource.src = trackFile;
+        weddingMusic.load();
+        weddingMusic.play().catch(function () {});
+      });
+    });
+
+    // RSVP Form -> Telegram Direct Send
+    document.getElementById("rsvpForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById("guestName").value.trim();
+      const count = document.getElementById("guestCount").value;
+      const attendance = document.getElementById("attendance").value;
+
+      // លេខទូរស័ព្ទ Telegram (855966377460)
+      const telegramPhone = "855966377460"; 
+
+      const message = `សូមជម្រាបសួរ! ខ្ញុំបាទ/នាងខ្ញុំ %0A` +
+                      `👤 ឈ្មោះ៖ ${encodeURIComponent(name)} %0A` +
+                      `👥 ចំនួនអ្នកចូលរួម៖ ${count} នាក់ %0A` +
+                      `📌 ការបញ្ជាក់៖ ${encodeURIComponent(attendance)} %0A` +
+                      `🎉 ក្នុងពិធីមង្គលការ សួន សុវណ្ណដែន & ចេក ស្រីពេជ្រ`;
+
+      window.open(`https://t.me/+${telegramPhone}?text=${message}`, '_blank');
+    });
+  </script>
+</body>
+</html>
